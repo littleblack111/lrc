@@ -55,7 +55,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                     &ext.to_lowercase()
                         .as_str(),
                 ) {
-                    files.push(path.to_path_buf());
+                    if !path
+                        .with_extension("lrc")
+                        .exists()
+                    {
+                        files.push(path.to_path_buf());
+                    }
                 }
             }
         }
